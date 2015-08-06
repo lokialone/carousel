@@ -25,7 +25,7 @@ var carousel = function(poster){
 		"posterHeight":270,//图片高度
 		"scale":0.8,
 		"autoPlay":true,
-		"delay":5000,
+		"delay":500,
 		"speed":300,
 		"vericalAlign":"top"
 	}
@@ -53,13 +53,13 @@ var carousel = function(poster){
 		
 	});
 	if(this.setting.autoPlay == true){
-		autoPlay();
+		this.autoPlay();
 		this.poster.hover(function(){
 
 			window.clearInterval(self.timer);
 
 		},function(){
-
+			self.autoPlay();
 
 
 		})
@@ -69,7 +69,6 @@ var carousel = function(poster){
 }
 carousel.prototype = {
 	
-
 	//设置幻灯片右边的参数
 	setPosterPos:function () {
 		
@@ -273,14 +272,12 @@ carousel.prototype = {
  	},
  	//
  	autoPlay:function(){
-
+ 		var _this =this;
  		this.timer = window.setInterval(function(){
 
- 			self.poster_next_btn.click();
+ 			_this.poster_next_btn.click();
 
- 		},self.setting.delay);
-
-
+ 		},_this.setting.delay);
  	}
 
 }
